@@ -1,7 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
-Route::get(uri: "/", action: function (): string {
-    return "API";
-});
+Route::apiResource(name: "posts",  controller: PostController::class);
