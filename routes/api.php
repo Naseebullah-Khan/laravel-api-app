@@ -8,4 +8,4 @@ Route::apiResource(name: "posts",  controller: PostController::class);
 
 Route::post(uri: '/register', action: [AuthController::class, "register"])->name(name: "auth.register");
 Route::post(uri: '/login', action: [AuthController::class, "login"])->name(name: "auth.login");
-Route::post(uri: '/logout', action: [AuthController::class, "logout"])->name(name: "auth.logout");
+Route::post(uri: '/logout', action: [AuthController::class, "logout"])->name(name: "auth.logout")->middleware(middleware: "auth:sanctum");
