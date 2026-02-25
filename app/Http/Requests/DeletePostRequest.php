@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdatePostRequest extends FormRequest
+class DeletePostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,16 +21,8 @@ class UpdatePostRequest extends FormRequest
      */
     public function rules(): array
     {
-        $method = $this->method();
-        if ($method == "PATCH") {
-            return [
-                "title" => "sometimes|max:255",
-                "body" => "sometimes",
-            ];
-        }
         return [
-            "title" => "required|max:255",
-            "body" => "required",
+            //
         ];
     }
 }

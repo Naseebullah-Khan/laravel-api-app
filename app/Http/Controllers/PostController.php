@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DeletePostRequest;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
@@ -61,7 +62,7 @@ class PostController extends Controller implements HasMiddleware
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post): array
+    public function destroy(DeletePostRequest $request, Post $post): array
     {
         $post->delete();
 
