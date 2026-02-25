@@ -6,6 +6,7 @@ use App\Http\Requests\LoginPostRequest;
 use App\Http\Requests\RegisterPostRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -26,9 +27,22 @@ class AuthController extends Controller
         ];
     }
 
-    public function login(LoginPostRequest $request): string
+    public function login(LoginPostRequest $request): array
     {
-        return "Login!";
+        $user = User::where(column: "email", operator: "=", value: $request->email)->first();
+
+        if (!$user || !Hash::check(value: $request->password, hashedValue: $user->password)) {
+            return [
+                "message" => "The provided credentials are incorrect."
+            ];
+        }
+
+        $token = $user->createToken(name: $user->name);
+
+        return [
+            "user" => $user,
+            "token" => $token->plainTextToken
+        ];
     }
 
     public function logout(Request $request): string
