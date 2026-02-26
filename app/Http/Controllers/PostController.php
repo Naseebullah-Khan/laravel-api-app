@@ -31,14 +31,14 @@ class PostController extends Controller implements HasMiddleware
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePostRequest $request): Post
+    public function store(StorePostRequest $request): array
     {
         $newPost = new Post();
         $newPost->title = $request->title;
         $newPost->body = $request->body;
         $request->user()->posts()->save($newPost);
 
-        return $newPost;
+        return ["post" => $newPost, "user" => $newPost->user];
     }
 
     /**
