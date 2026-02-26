@@ -44,9 +44,9 @@ class PostController extends Controller implements HasMiddleware
     /**
      * Display the specified resource.
      */
-    public function show(Post $post): Post
+    public function show(Post $post): array
     {
-        return $post;
+        return ["post" => $post, "user" => $post->user];
     }
 
     /**
