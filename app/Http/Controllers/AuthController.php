@@ -19,8 +19,7 @@ class AuthController extends Controller
         $user->password = $request->password;
         $user->save();
 
-        // $token = $user->createToken(name: $request->name, expiresAt: now()->addMinutes(value: 30));
-        $token = $user->createToken(name: $request->name);
+        $token = $user->createToken(name: $request->name, expiresAt: now()->addMinutes(value: 30));
 
         return [
             "user" => $user,
@@ -40,8 +39,7 @@ class AuthController extends Controller
             ];
         }
 
-        // $token = $user->createToken(name: $user->name, expiresAt: now()->addMinutes(value: 30));
-        $token = $user->createToken(name: $user->name);
+        $token = $user->createToken(name: $user->name, expiresAt: now()->addMinutes(value: 30));
 
         return [
             "user" => $user,
