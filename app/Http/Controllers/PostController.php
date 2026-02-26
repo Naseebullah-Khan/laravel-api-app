@@ -25,7 +25,7 @@ class PostController extends Controller implements HasMiddleware
      */
     public function index(): Collection
     {
-        return Post::all();
+        return Post::with(relations: "user")->latest()->get();
     }
 
     /**
